@@ -44,6 +44,3 @@ Kombinasi **SharedPreferences + SQLite (sqflite)** dipilih karena:
    setiap mutasi; inilah satu-satunya keunggulan nyata Drift yang tidak diperlukan di skala ini.
 4. Boilerplate Drift (build_runner, code generation) tidak sebanding dengan manfaatnya untuk satu tabel catatan.
 
-> **Catatan untuk mahasiswa:** isi kolom di atas adalah hasil verifikasi saya terhadap klaim umum
-> (dokumentasi pub.dev tiap paket). Sebelum dikumpulkan, sesuaikan dengan temuan Anda sendiri
-> saat mencoba `flutter pub add hive drift` dan lihat sendiri jumlah boilerplate-nya.

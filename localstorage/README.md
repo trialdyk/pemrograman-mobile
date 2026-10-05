@@ -3,7 +3,7 @@
 Aplikasi catatan **offline-first** untuk Praktikum Pemrograman Mobile Minggu 5 (Local Storage & Offline First),
 Jurusan Teknologi Informasi, Politeknik Negeri Malang.
 
-**Identitas:** Tri Aldy Kurniawan · NIM: _(isi)_ · Kelas: _(isi)_ · Repository: _(isi tautan)_
+**Identitas:** Tri Aldy Kurniawan · NIM: 244107020098 · Kelas: 3C
 
 ## Tujuan
 
