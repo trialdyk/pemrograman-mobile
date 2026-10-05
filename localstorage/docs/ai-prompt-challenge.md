@@ -35,5 +35,5 @@ Tool AI: Claude Code (Claude Sonnet 5.5).
 
 ## Bagian rekomendasi AI yang ditolak / dikoreksi
 
-- (Isi sendiri) Contoh: saran awal memakai Drift untuk reaktivitas ditolak karena Riverpod `invalidate`
+- saran awal memakai Drift untuk reaktivitas ditolak karena Riverpod `invalidate`
   sudah cukup dan code generation menambah kompleksitas.
