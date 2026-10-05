@@ -27,5 +27,19 @@ Perangkat uji: Android emulator `sdk gphone16k x86 64` (Android 17, API 37).
 
 ## Observasi
 
-_(Tuliskan dengan kata-kata sendiri apa yang Anda amati.)_
+Pengujian dilakukan di emulator Android dengan mode pesawat diaktifkan lewat pengaturan perangkat.
+
+1. **Catatan tetap bisa dibuat saat offline.** Dengan mode pesawat aktif (ikon pesawat muncul di status bar), saya menambah tiga catatan dan semuanya langsung tersimpan tanpa error. Hal ini wajar karena seluruh operasi catatan hanya menulis ke SQLite lokal dan tidak memerlukan jaringan sama sekali. Tidak ada kode khusus untuk menangani mode offline.
+
+2. **Dirty flag bekerja sebagai antrean.** Setiap catatan baru langsung ditandai belum tersinkron: ikon awan oranye, chip "belum tersinkron", dan badge di AppBar bertambah dari 1 menjadi 3 sesuai jumlah catatan yang ditambahkan.
+
+3. **Sinkronisasi ditolak saat offline dan antrean tidak hilang.** Setelah saklar "Paksa mode offline" saya aktifkan, tombol Sinkronkan menampilkan snackbar "Perangkat offline, sinkronisasi ditunda." dan badge tetap 3. Artinya flag dirty tidak diubah ketika sinkronisasi gagal, sehingga data masih bisa dikirim nanti.
+
+4. **Sinkronisasi berhasil setelah saklar dimatikan.** Setelah jeda sekitar satu detik (delay simulasi server), muncul snackbar "3 catatan berhasil disinkronkan", badge menghilang, dan ikon ketiga catatan berubah menjadi awan hijau. Terlihat bahwa penanda dirty dibersihkan hanya setelah proses sinkronisasi selesai.
+
+5. **Cache posts tampil tanpa internet.** Saat online, halaman Posts mengambil data dari API dan menyimpannya ke tabel `cached_posts`. Setelah aplikasi dimatikan total dan mode pesawat diaktifkan, halaman Posts tetap menampilkan daftar yang sama dari cache. Jika cache belum pernah terisi dan perangkat offline, aplikasi akan menampilkan pesan error yang jelas dan bukan layar kosong.
+
+6. **Data dan preferensi bertahan setelah aplikasi ditutup.** Catatan masih ada setelah aplikasi dimatikan paksa lalu dibuka lagi, dan tema gelap tetap aktif karena disimpan di SharedPreferences.
+
+**Kesimpulan observasi:** pola offline-first berjalan sesuai tujuan. Perangkat menjadi sumber data utama sehingga membaca dan menulis tetap lancar tanpa internet, sementara jaringan hanya diperlukan untuk menyinkronkan. Kelemahan yang saya sadari: `markAllSynced()` menandai semua catatan menjadi bersih, jadi catatan yang diedit selama proses upload bisa ikut ditandai sudah tersinkron padahal versi barunya belum terkirim.
 
